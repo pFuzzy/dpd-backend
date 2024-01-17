@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  dpd-backend:
+    container_name: dpd-backend
+    build:
+      dockerfile: Dockerfile
+    image: dpd-backend-i
+    ports:
+      - "8888:8888"
+    networks:
+      - spring-cloud-network
+  dpd-database:
+      container_name: dpd-database
+      image: postgres
+      ports:
+        - "8889:8889"
+      environment:
+        - POSTGRES_PASSWORD=fazipw
+networks:
+  spring-cloud-network:
+    driver: bridge
